@@ -41,13 +41,19 @@ function Header() {
 
                 {!isLoggedIn && (
                     <div className="flex items-center gap-3">
-                        <button className="px-4 py-2 border border-gray-300 rounded-lg">
+                        <NavLink
+                            to={"/login"}
+                            className="px-4 py-2 border border-gray-300 rounded-lg"
+                        >
                             Sign In
-                        </button>
+                        </NavLink>
 
-                        <button className="px-4 py-2 bg-black text-white rounded-lg">
+                        <NavLink
+                            to={"/register"}
+                            className="px-4 py-2 bg-black text-white rounded-lg"
+                        >
                             Get Started
-                        </button>
+                        </NavLink>
                     </div>
                 )}
             </div>
