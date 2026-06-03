@@ -21,6 +21,9 @@ const documentSlice = createSlice({
             state.extracting = true;
             state.error = null;
         },
+        stopExtraction: (state) => {
+            state.extracting = false;
+        },
         extractionFailed: (state, action) => {
             state.error = action.payload;
             state.extracting = false;
@@ -39,6 +42,7 @@ export const {
     setDocument,
     setDocData,
     startExtraction,
+    stopExtraction,
     extractionFailed,
     clearDocument,
 } = documentSlice.actions;
