@@ -10,10 +10,10 @@ const documentSlice = createSlice({
     initialState,
     reducers: {
         setDocument: (state, action) => {
-            console.log("Document set");
+            state.document = action.payload;
         },
         setDocData: (state, action) => {
-            console.log("Here is your extracted data: ", { name: "Bhargab" });
+            state.docData = action.payload;
         },
     },
 });
