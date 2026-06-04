@@ -7,8 +7,16 @@ from app.services.ocr_extractor import extract_image_text
 from app.parsers.pdf_parser import parse_pdf_text
 from app.parsers.ocr_parser import parse_ocr_text
 
-app = FastAPI()
+from fastapi.middleware.cors import CORSMiddleware
 
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/upload")
 async def upload_file(file: UploadFile):
