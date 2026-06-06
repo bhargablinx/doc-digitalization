@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
+import os
 import shutil
 
 from app.services.document_service import process_document
@@ -15,11 +16,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+os.makedirs("app/uploads", exist_ok=True)
+
 
 @app.post("/extract")
 async def upload_file(file: UploadFile):
 
+    file_path = None
+    
     try:
+        if not file.filename:
+            raise ValueError("No file uploaded")
 
         file_path = f"app/uploads/{file.filename}"
 
@@ -43,3 +50,7 @@ async def upload_file(file: UploadFile):
             "success": False,
             "error": str(e)
         }
+
+    finally:
+        if file_path and os.path.exists(file_path):
+            os.remove(file_path)
