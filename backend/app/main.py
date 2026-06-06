@@ -16,7 +16,7 @@ app.add_middleware(
 )
 
 
-@app.post("/upload")
+@app.post("/extract")
 async def upload_file(file: UploadFile):
 
     try:
