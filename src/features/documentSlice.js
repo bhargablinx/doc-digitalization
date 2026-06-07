@@ -22,6 +22,12 @@ const documentSlice = createSlice({
             state.extracting = true;
             state.error = null;
         },
+
+        stopsExtraction: (state) => {
+            state.extracting = false;
+            state.error = null;
+        },
+
         extractionFailed: (state, action) => {
             state.error = action.payload;
             state.extracting = false;
@@ -42,6 +48,7 @@ export const {
     startExtraction,
     extractionFailed,
     clearDocument,
+    stopsExtraction,
 } = documentSlice.actions;
 
 export default documentSlice.reducer;
